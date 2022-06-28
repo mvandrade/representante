@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
     // String apiKey;
 
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Recorrente',
       theme: ThemeData.dark().copyWith(
         appBarTheme: AppBarTheme(backgroundColor: bgColor, elevation: 0),
         scaffoldBackgroundColor: bgColor,
