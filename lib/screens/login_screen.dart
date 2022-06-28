@@ -1,8 +1,9 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:recorrente/blocs/login_bloc.dart';
-import 'package:recorrente/screens/home_screen.dart';
+import 'package:recorrente/widgets/app_name.dart';
 import 'package:recorrente/widgets/input_field.dart';
-import 'package:recorrente/screens/reset_passwoed.dart';
+import 'package:recorrente/widgets/input_field_obscure.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -21,8 +22,7 @@ class _LoginScreenState extends State<LoginScreen> {
     _loginBloc.outState.listen((state) {
       switch (state) {
         case LoginState.SUCCESS:
-          Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => const HomeScreen()));
+          Navigator.of(context).pushNamed('/HomeScreen');
           break;
         case LoginState.FAIL:
           showDialog(
@@ -76,27 +76,11 @@ class _LoginScreenState extends State<LoginScreen> {
               }
               return Stack(
                 children: [
-                  Container(
-                    padding: const EdgeInsets.only(left: 35, top: 35),
-                    child: Text(
-                      'Venda &\n Representação',
-                      style: TextStyle(
-                        color: Colors.blue.shade700,
-                        fontSize: 45,
-                        fontFamily: 'Anton',
-                        decoration: TextDecoration.none,
-                        shadows: [
-                          Shadow(
-                              color: Colors.grey.shade900,
-                              blurRadius: 5,
-                              offset: const Offset(5, 5)),
-                        ],
-                      ),
-                    ),
-                  ),
+                  const AppName(),
                   SingleChildScrollView(
                     child: Container(
                       padding: EdgeInsets.only(
+                          bottom: MediaQuery.of(context).size.width * 0.3,
                           right: MediaQuery.of(context).size.width * 0.3,
                           left: MediaQuery.of(context).size.width * 0.3,
                           top: MediaQuery.of(context).size.height * 0.3),
@@ -118,6 +102,18 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
+                              SizedBox(
+                                width: 400,
+                                height: 50,
+                                child: AutoSizeText(
+                                  'Informe seus dados para efetuar o login.',
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.blue.shade900,
+                                  ),
+                                  maxLines: 2,
+                                ),
+                              ),
                               InputField(
                                 icon: Icons.email_outlined,
                                 hint: 'E-Mail',
@@ -126,12 +122,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                 onChanged: _loginBloc.changeEmail,
                               ),
                               const SizedBox(
-                                height: 20,
+                                height: 10,
                               ),
-                              InputField(
+                              InputFieldObscure(
                                 icon: Icons.lock_outline,
                                 hint: 'Senha',
-                                obscure: true,
+                                showValue: false,
                                 stream: _loginBloc.outPassword,
                                 onChanged: _loginBloc.changePassword,
                               ),
@@ -178,10 +174,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 children: [
                                   TextButton(
                                     onPressed: () {
-                                      Navigator.of(context).pushReplacement(
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const ForgotScreen()));
+                                      Navigator.of(context)
+                                          .pushNamed('/ForgotScreen');
                                     },
                                     style: TextButton.styleFrom(
                                       textStyle: const TextStyle(fontSize: 20),
@@ -190,7 +184,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       'Esqueceu sua senha?',
                                       style: TextStyle(
                                         decoration: TextDecoration.none,
-                                        fontSize: 20,
+                                        fontSize: 15,
                                         color: Colors.blue.shade900,
                                       ),
                                     ),

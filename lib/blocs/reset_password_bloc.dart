@@ -21,7 +21,10 @@ class ForgotBloc extends BlocBase with ForgotValidators {
 
     _stateController.add(ForgotState.LOADING);
 
-    FirebaseAuth.instance.sendPasswordResetEmail(email: email)
+    // FirebaseAuth.instance.verifyPasswordResetCode(code)
+
+
+    FirebaseAuth.instance.sendPasswordResetEmail(email: email.trim())
     .then((_) => _stateController.add(ForgotState.SUCCESS))
     .catchError((e) {
       _stateController.add(ForgotState.FAIL);

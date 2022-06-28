@@ -1,31 +1,52 @@
 import 'package:flutter/material.dart';
 
-class InputField extends StatelessWidget {
-
-  const InputField({Key? key, required this.icon,required  this.hint, required this.obscure, required this.stream, required this.onChanged}) : super(key: key);
+class InputFieldObscure extends StatefulWidget {
+  const InputFieldObscure(
+      {Key? key,
+      required this.icon,
+      required this.hint,
+      required this.showValue,
+      required this.stream,
+      required this.onChanged})
+      : super(key: key);
 
   final IconData icon;
   final String hint;
-  final bool obscure;
+  final bool showValue;
   final Stream<String> stream;
   final Function(String) onChanged;
 
   @override
+  State<InputFieldObscure> createState() => _InputFieldObscureState();
+}
+
+class _InputFieldObscureState extends State<InputFieldObscure> {
+
+  bool _showValues = false;
+
+  @override
   Widget build(BuildContext context) {
+    
     return StreamBuilder<String>(
-      stream: stream,
+      stream: widget.stream,
       initialData: "",
       builder: (context, snapshot) {
         return TextField(
-          onChanged: onChanged,
+          onChanged: widget.onChanged,
           decoration: InputDecoration(
             prefixIcon: Icon(
-              icon,
+              widget.icon,
               color: Colors.blue.shade900,
             ),
-            // fillColor: Colors.grey.shade100,
-            // filled: true,
-            hintText: hint,
+            suffix: GestureDetector(
+              child: Icon( _showValues ? Icons.visibility : Icons.visibility_off, color: Colors.blue.shade900,),
+              onTap: () {
+                setState(() {
+                  _showValues = !_showValues;
+                });
+              },
+            ),
+            hintText: widget.hint,
             hintStyle: TextStyle(
               color: Colors.grey.shade900,
             ),
@@ -43,7 +64,7 @@ class InputField extends StatelessWidget {
             errorText: snapshot.hasError ? snapshot.error.toString() : null,
           ),
           style: const TextStyle(color: Colors.black, fontSize: 16),
-          obscureText: obscure,
+          obscureText: _showValues ? false: true,
         );
       },
     );

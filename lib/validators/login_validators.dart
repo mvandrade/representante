@@ -11,7 +11,7 @@ class LoginValidators {
       }
     }
   );
-}
+
   final validatePassword = StreamTransformer<String, String>.fromHandlers(
     handleData: (password, sink) {
       if (password.length >= 8) {
@@ -21,3 +21,5 @@ class LoginValidators {
       }
     }
   );
+  
+}

@@ -1,9 +1,8 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:recorrente/widgets/app_name.dart';
 import 'package:recorrente/widgets/input_field.dart';
 import 'package:recorrente/blocs/reset_password_bloc.dart';
-
-import 'home_screen.dart';
-import 'login_screen.dart';
 
 class ForgotScreen extends StatefulWidget {
   const ForgotScreen({Key? key}) : super(key: key);
@@ -22,8 +21,7 @@ class _ForgotState extends State<ForgotScreen> {
     _forgotBloc.outState.listen((state) {
       switch (state) {
         case ForgotState.SUCCESS:
-          Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => const HomeScreen()));
+          Navigator.of(context).pushNamed('/ForgotSuccessScreen');
           break;
         case ForgotState.FAIL:
           showDialog(
@@ -75,24 +73,7 @@ class _ForgotState extends State<ForgotScreen> {
               }
               return Stack(
                 children: [
-                  Container(
-                    padding: const EdgeInsets.only(left: 35, top: 35),
-                    child: Text(
-                      'Venda &\n Representação',
-                      style: TextStyle(
-                        color: Colors.blue.shade800,
-                        fontFamily: 'Anton',
-                        fontSize: 45,
-                        decoration: TextDecoration.none,
-                        shadows: [
-                          Shadow(
-                              color: Colors.grey.shade900,
-                              blurRadius: 5,
-                              offset: const Offset(5, 5)),
-                        ],
-                      ),
-                    ),
-                  ),
+                  const AppName(),
                   StreamBuilder<ForgotState>(
                       stream: _forgotBloc.outState,
                       builder: (context, snapshot) {
@@ -120,13 +101,17 @@ class _ForgotState extends State<ForgotScreen> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: const [
-                                        Text(
-                                            'Informe o e-mail utilizado no acesso no aplicativo.')
-                                      ],
+                                    SizedBox(
+                                      width: 450,
+                                      height: 50,
+                                      child: AutoSizeText(
+                                        'Por favor, informe o e-mail associado a sua conta de acesso no aplicativo.',
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                          color: Colors.blue.shade900,
+                                        ),
+                                        maxLines: 3,
+                                      ),
                                     ),
                                     InputField(
                                       icon: Icons.email_outlined,
@@ -153,7 +138,7 @@ class _ForgotState extends State<ForgotScreen> {
                                               fontWeight: FontWeight.w700),
                                         ),
                                         const SizedBox(
-                                          width: 5,
+                                          width: 20,
                                         ),
                                         StreamBuilder<Object>(
                                             stream: _forgotBloc.outSubmitValid,
@@ -184,16 +169,14 @@ class _ForgotState extends State<ForgotScreen> {
                                       children: [
                                         TextButton(
                                           onPressed: () {
-                                            Navigator.of(context).pushReplacement(
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        const LoginScreen()));
+                                            Navigator.of(context)
+                                                .pushNamed('/');
                                           },
                                           child: Text(
                                             'Voltar para o login',
                                             style: TextStyle(
                                               decoration: TextDecoration.none,
-                                              fontSize: 20,
+                                              fontSize: 15,
                                               color: Colors.blue.shade900,
                                             ),
                                           ),

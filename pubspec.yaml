@@ -40,6 +40,10 @@ dependencies:
   bloc_pattern: ^3.0.1
   rxdart: ^0.27.4
   google_fonts: ^3.0.1
+  auto_size_text: ^3.0.0
+  flutter_svg: ^0.22.0
+  provider: ^5.0.0
+  colorize_text_avatar: ^1.0.2
 
 dev_dependencies:
   flutter_test:
@@ -66,6 +70,8 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
+    - assets/icons/
+    - assets/logo/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
