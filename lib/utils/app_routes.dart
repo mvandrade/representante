@@ -4,4 +4,5 @@ abstract class AppRoutes {
   static const FORGOT = '/ForgotScreen';
   static const FORGOT_SUCCESS = '/ForgotSuccessScreen';
   static const CONFIRM_PASSWORD = '/ConfirmPasswordScreen';
+  static const REPRESENTANTE = '/AgentScreen';
 }

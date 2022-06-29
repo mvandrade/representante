@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 import 'package:recorrente/extensions/stringExtension.dart';
-import 'package:recorrente/screens/home_screen.dart';
+import 'package:recorrente/screens/agent/agent_screen.dart';
+import 'package:recorrente/screens/home/home_screen.dart';
 import 'package:recorrente/screens/login_screen.dart';
 import 'package:recorrente/screens/reset_password_screen.dart';
 import 'package:recorrente/screens/reset_password_success_screen.dart';
@@ -44,22 +45,23 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       title: 'Recorrente',
-      theme: ThemeData.dark().copyWith(
+      theme: ThemeData().copyWith(
         appBarTheme: AppBarTheme(backgroundColor: bgColor, elevation: 0),
         scaffoldBackgroundColor: bgColor,
         primaryColor: greenColor,
         dialogBackgroundColor: secondaryColor,
         buttonColor: greenColor,
         textTheme: GoogleFonts.openSansTextTheme(Theme.of(context).textTheme)
-            .apply(bodyColor: Colors.white),
+            .apply(bodyColor: Colors.black),
         canvasColor: secondaryColor,
       ),
       initialRoute: '/',
       routes: {
-        AppRoutes.LOGIN: (ctx) => const LoginScreen(),
-        AppRoutes.HOME: (ctx) => const HomeScreen(),
         AppRoutes.FORGOT: (ctx) => const ForgotScreen(),
         AppRoutes.FORGOT_SUCCESS: (ctx) => const ForgotSuccessScreen(),
+        AppRoutes.HOME: (ctx) => const HomeScreen(),
+        AppRoutes.LOGIN: (ctx) => const LoginScreen(),
+        AppRoutes.REPRESENTANTE: (ctx) => const AgentScreen(),
         // AppRoutes.CONFIRM_PASSWORD: (ctx) => const ConfirmPasswordScreen(),
       },
       onGenerateRoute: (settings) {

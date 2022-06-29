@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:recorrente/screens/side_menu_screen.dart';
+import 'package:recorrente/screens/home/pages/home_page.dart';
+import 'package:recorrente/widgets/side_menu.dart';
 import 'package:recorrente/responsive.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -13,21 +14,19 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const SiseMenuScreen(),
+      drawer: const SideMenuWidget(),
       body: SafeArea(
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             if (Responsive.isDesktop(context))
               const Expanded(
-                child: SiseMenuScreen(),
+                child: SideMenuWidget(),
               ),
             const Expanded(
               // It takes 5/6 part of the screen
               flex: 5,
-              child: Center(
-                child: Text('Home Page'),
-              ),
+              child: HomePage(),
             ),
           ],
         ),

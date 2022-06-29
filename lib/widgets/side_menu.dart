@@ -2,8 +2,8 @@ import 'package:recorrente/core/constants/color_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class SiseMenuScreen extends StatelessWidget {
-  const SiseMenuScreen({
+class SideMenuWidget extends StatelessWidget {
+  const SideMenuWidget({
     Key? key,
   }) : super(key: key);
 
@@ -28,46 +28,47 @@ class SiseMenuScreen extends StatelessWidget {
                 const SizedBox(
                   height: defaultPadding,
                 ),
-                const Text("Vendas & Representações")
+                Text("Vendas & Representações", style: TextStyle(color: Colors.green.shade500),),
               ],
             )),
+            // const Divider(color: Colors.black12, indent: 20, endIndent: 20,),
             DrawerListTile(
               title: "Dashboard",
               svgSrc: "assets/icons/menu_dashbord.svg",
               press: () {},
             ),
             DrawerListTile(
-              title: "Posts",
+              title: "Postagens",
               svgSrc: "assets/icons/menu_tran.svg",
               press: () {},
             ),
             DrawerListTile(
-              title: "Pages",
+              title: "Páginas",
               svgSrc: "assets/icons/menu_task.svg",
               press: () {},
             ),
             DrawerListTile(
-              title: "Categories",
+              title: "Categorias",
               svgSrc: "assets/icons/menu_doc.svg",
               press: () {},
             ),
             DrawerListTile(
-              title: "Appearance",
+              title: "Aparência",
               svgSrc: "assets/icons/menu_store.svg",
               press: () {},
             ),
             DrawerListTile(
-              title: "Users",
+              title: "Usuários",
               svgSrc: "assets/icons/menu_notification.svg",
               press: () {},
             ),
             DrawerListTile(
-              title: "Tools",
+              title: "Ferramentas",
               svgSrc: "assets/icons/menu_profile.svg",
               press: () {},
             ),
             DrawerListTile(
-              title: "Settings",
+              title: "Configurações",
               svgSrc: "assets/icons/menu_setting.svg",
               press: () {},
             ),
@@ -97,12 +98,12 @@ class DrawerListTile extends StatelessWidget {
       horizontalTitleGap: 0.0,
       leading: SvgPicture.asset(
         svgSrc,
-        color: Colors.white54,
-        height: 16,
+        color: Colors.green.shade800,
+        height: 18,
       ),
       title: Text(
         title,
-        style: const TextStyle(color: Colors.white54),
+        style: const TextStyle(color: Colors.black),
       ),
     );
   }

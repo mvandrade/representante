@@ -80,10 +80,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   SingleChildScrollView(
                     child: Container(
                       padding: EdgeInsets.only(
-                          bottom: MediaQuery.of(context).size.width * 0.3,
-                          right: MediaQuery.of(context).size.width * 0.3,
-                          left: MediaQuery.of(context).size.width * 0.3,
-                          top: MediaQuery.of(context).size.height * 0.3),
+                        bottom: MediaQuery.of(context).size.width * 0.3,
+                        right: MediaQuery.of(context).size.width * 0.3,
+                        left: MediaQuery.of(context).size.width * 0.3,
+                        top: MediaQuery.of(context).size.height * 0.3,
+                      ),
                       child: Card(
                         elevation: 10,
                         color: Colors.blue[300],
