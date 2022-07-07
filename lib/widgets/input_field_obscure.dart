@@ -52,7 +52,7 @@ class _InputFieldObscureState extends State<InputFieldObscure> {
             ),
             focusedBorder: const UnderlineInputBorder(
               borderSide: BorderSide(
-                color: Colors.white,
+                color: Colors.blue,
               ),
             ),
             contentPadding: const EdgeInsets.only(

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recorrente/blocs/confirm_password_bloc.dart';
 import 'package:recorrente/widgets/app_name.dart';
-import 'package:recorrente/widgets/input_field.dart';
 import 'package:recorrente/widgets/input_field_obscure.dart';
 
 class ConfirmPasswordScreen extends StatefulWidget {
@@ -94,7 +93,7 @@ class _ConfirmPasswordScreenState extends State<ConfirmPasswordScreen> {
                     top: MediaQuery.of(context).size.height * 0.3),
                 child: Card(
                   elevation: 10,
-                  color: Colors.blue[300],
+                  color: Colors.white,
                   shape: RoundedRectangleBorder(
                     side: BorderSide(
                       color: Theme.of(context).colorScheme.background.withBlue(255),

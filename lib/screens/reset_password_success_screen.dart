@@ -30,7 +30,7 @@ class ForgotSuccessScreen extends StatelessWidget {
               top: MediaQuery.of(context).size.height * 0.35),
           child: Card(
             elevation: 10,
-            color: Colors.blue[300],
+            color: Colors.white,
             shape: RoundedRectangleBorder(
               side: BorderSide(
                 color: Theme.of(context).colorScheme.background.withBlue(255),

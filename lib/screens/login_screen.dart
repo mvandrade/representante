@@ -87,7 +87,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       child: Card(
                         elevation: 10,
-                        color: Colors.blue[300],
+                        color: Colors.white,
                         shape: RoundedRectangleBorder(
                           side: BorderSide(
                             color: Theme.of(context)

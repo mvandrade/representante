@@ -31,7 +31,7 @@ class InputField extends StatelessWidget {
             ),
             focusedBorder: const UnderlineInputBorder(
               borderSide: BorderSide(
-                color: Colors.white,
+                color: Colors.blue,
               ),
             ),
             contentPadding: const EdgeInsets.only(

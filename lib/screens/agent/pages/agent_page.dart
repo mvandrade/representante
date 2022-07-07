@@ -1,16 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:recorrente/core/constants/color_constants.dart';
 import 'package:recorrente/widgets/header.dart';
 import 'package:recorrente/widgets/title_page.dart';
+import 'package:brasil_fields/brasil_fields.dart';
 
-class AgentPage extends StatelessWidget {
+class AgentPage extends StatefulWidget {
   const AgentPage({Key? key}) : super(key: key);
 
   @override
+  State<AgentPage> createState() => _AgentPageState();
+}
+
+class _AgentPageState extends State<AgentPage> {
+
+  final ScrollController _controller = ScrollController();
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: SingleChildScrollView(
-        //padding: EdgeInsets.all(defaultPadding),
+      child: Scrollbar(
+        thumbVisibility: true,
+        controller: _controller,
         child: Container(
           decoration: BoxDecoration(color: Colors.grey.shade50),
           padding: const EdgeInsets.all(defaultPadding / 8),
@@ -21,16 +31,16 @@ class AgentPage extends StatelessWidget {
                 title: 'Cadastro de Representantes',
               ),
               Padding(
-                padding: EdgeInsets.only(
-                  bottom: MediaQuery.of(context).size.width * 0.1,
-                  right: MediaQuery.of(context).size.width * 0.1,
-                  left: MediaQuery.of(context).size.width * 0.1,
-                  top: MediaQuery.of(context).size.height * 0.05,
+                padding: const EdgeInsets.only(
+                  top: 20,
                 ),
-                child: Center(
+                child: FittedBox(
                   child: Card(
                     child: Padding(
-                      padding: const EdgeInsets.all(5.0),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 60,
+                        vertical: 30,
+                      ),
                       child: Column(
                         children: [
                           Row(
@@ -40,23 +50,31 @@ class AgentPage extends StatelessWidget {
                               ),
                             ],
                           ),
-                          const SizedBox(height: 5,),
+                          const SizedBox(
+                            height: 5,
+                          ),
                           Row(
-                            children: const [
+                            children: [
                               SizedBox(
                                 width: 215,
                                 child: TextField(
-                                  decoration: InputDecoration(
+                                  textInputAction: TextInputAction.next,
+                                  inputFormatters: [
+                                    FilteringTextInputFormatter.digitsOnly,
+                                    CnpjInputFormatter()
+                                  ],
+                                  decoration: const InputDecoration(
                                       border: OutlineInputBorder(),
                                       labelText: 'CNPJ'),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 20,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 600,
                                 child: TextField(
+                                  textInputAction: TextInputAction.next,
                                   decoration: InputDecoration(
                                       border: OutlineInputBorder(),
                                       labelText: 'Razão Social'),
@@ -68,21 +86,27 @@ class AgentPage extends StatelessWidget {
                             height: 20,
                           ),
                           Row(
-                            children: const [
+                            children: [
                               SizedBox(
                                 width: 215,
                                 child: TextField(
-                                  decoration: InputDecoration(
+                                  textInputAction: TextInputAction.next,
+                                  decoration: const InputDecoration(
                                       border: OutlineInputBorder(),
                                       labelText: 'Celular'),
+                                  inputFormatters: [
+                                    FilteringTextInputFormatter.digitsOnly,
+                                    TelefoneInputFormatter(),
+                                  ],
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 20,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 600,
                                 child: TextField(
+                                  textInputAction: TextInputAction.next,
                                   decoration: InputDecoration(
                                       border: OutlineInputBorder(),
                                       labelText: 'Nome do Contato'),
@@ -95,26 +119,32 @@ class AgentPage extends StatelessWidget {
                           ),
                           Row(
                             children: const [
-                              Text('Endereço Comercial',),
+                              Text(
+                                'Endereço Comercial',
+                              ),
                             ],
                           ),
                           const SizedBox(
                             height: 5,
                           ),
                           Row(
-                            children: const [
+                            children: [
                               SizedBox(
                                 width: 215,
                                 child: TextField(
-                                  decoration: InputDecoration(
+                                  inputFormatters: [
+                                    FilteringTextInputFormatter.digitsOnly,
+                                    CepInputFormatter()
+                                  ],
+                                  decoration: const InputDecoration(
                                       border: OutlineInputBorder(),
                                       labelText: 'CEP'),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 20,
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 600,
                                 child: TextField(
                                   decoration: InputDecoration(
@@ -124,7 +154,9 @@ class AgentPage extends StatelessWidget {
                               ),
                             ],
                           ),
-                          const SizedBox(height: 20,),
+                          const SizedBox(
+                            height: 20,
+                          ),
                           Row(
                             children: const [
                               SizedBox(
@@ -148,7 +180,9 @@ class AgentPage extends StatelessWidget {
                               ),
                             ],
                           ),
-                          const SizedBox(height: 20,),
+                          const SizedBox(
+                            height: 20,
+                          ),
                           Row(
                             children: const [
                               SizedBox(
@@ -183,6 +217,99 @@ class AgentPage extends StatelessWidget {
                               ),
                             ],
                           ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Row(
+                            children: const [
+                              SizedBox(
+                                width: 215,
+                                child: TextField(
+                                  decoration: InputDecoration(
+                                      border: OutlineInputBorder(),
+                                      labelText: 'Telefone'),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 20,
+                              ),
+                              SizedBox(
+                                width: 600,
+                                child: TextField(
+                                  textInputAction: TextInputAction.next,
+                                  decoration: InputDecoration(
+                                      border: OutlineInputBorder(),
+                                      labelText: 'E-Mail'),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          Row(
+                            children: const [
+                              SizedBox(
+                                width: 215,
+                                child: TextField(
+                                  decoration: InputDecoration(
+                                      border: OutlineInputBorder(),
+                                      labelText: 'Telefone'),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 20,
+                              ),
+                              SizedBox(
+                                width: 600,
+                                child: TextField(
+                                  textInputAction: TextInputAction.next,
+                                  decoration: InputDecoration(
+                                      border: OutlineInputBorder(),
+                                      labelText: 'E-Mail'),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                child: Padding(
+                                  padding: const EdgeInsets.only(bottom: 10),
+                                  child: ElevatedButton.icon(
+                                    onPressed: () {},
+                                    icon: const Icon(Icons.arrow_back),
+                                    label: const Text('Voltar'),
+                                    style: ElevatedButton.styleFrom(
+                                        primary: Colors.lightBlue),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 20,
+                              ),
+                              SizedBox(
+                                child: Directionality(
+                                  textDirection: TextDirection.rtl,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(bottom: 10),
+                                    child: ElevatedButton.icon(
+                                      onPressed: () {},
+                                      label: const Text('Gravar'),
+                                      icon: const Icon(Icons.save),
+                                      style: ElevatedButton.styleFrom(
+                                          primary: Colors.lightGreen),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )
                         ],
                       ),
                     ),
